@@ -28,4 +28,4 @@ ENV CGIMAP_MAXDEBT 250
 
 EXPOSE 8000
 
-CMD ["/usr/local/bin/openstreetmap-cgimap", "--port=8000", "--instances=30"]
+CMD ["/usr/local/bin/openstreetmap-cgimap", "--socket=8000", "--backend apidb", "--instances=1"]
