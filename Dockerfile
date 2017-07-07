@@ -17,10 +17,10 @@ COPY . ./
 # Compile, install and remove source
 RUN ./autogen.sh && ./configure && make install && ldconfig && rm -rf /app
 
-ENV CGIMAP_HOST db
+ENV CGIMAP_HOST MapData
 ENV CGIMAP_DBNAME openstreetmap
-ENV CGIMAP_USERNAME openstreetmap
-ENV CGIMAP_PASSWORD openstreetmap
+ENV CGIMAP_USERNAME WentOne
+ENV CGIMAP_PASSWORD Yixinglingdong00
 ENV CGIMAP_PIDFILE /dev/null
 ENV CGIMAP_LOGFILE /dev/stdout
 ENV CGIMAP_MEMCACHE memcached
