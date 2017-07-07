@@ -5,7 +5,7 @@ MAINTAINER operations@osmfoundation.org
 
 RUN apt-get update -qq && apt-get install -y gcc g++ make autoconf automake libtool \
  libfcgi-dev libxml2-dev libmemcached-dev \
- libboost-all-dev libcrypto++-dev \
+ libboost-all-dev lighttpd libcrypto++-dev \
  libpqxx-dev zlib1g-dev --no-install-recommends
 
 WORKDIR /app
@@ -14,7 +14,8 @@ WORKDIR /app
 COPY . ./
 
 # Compile, install and remove source
-RUN ./autogen.sh && ./configure && make install && ldconfig && rm -rf /app
+RUN ./autogen.sh && ./configure && make install && ldconfig
+RUN mkdir /home/cgimap && cp ./lighttpd.conf /home/cgimap/ && rm -rf /app
 
 ENV CGIMAP_HOST MapData
 ENV CGIMAP_DBNAME openstreetmap
@@ -28,4 +29,4 @@ ENV CGIMAP_MAXDEBT 250
 
 EXPOSE 8000
 
-CMD ["/usr/local/bin/openstreetmap-cgimap", "--socket=8000", "--backend apidb", "--instances=1"]
+CMD ["/usr/sbin/lighttpd", "-f /home/cgimap/lighttpd.conf"]
