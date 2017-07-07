@@ -5,8 +5,7 @@ MAINTAINER operations@osmfoundation.org
 
 RUN apt-get update -qq && apt-get install -y gcc g++ make autoconf automake libtool \
  libfcgi-dev libxml2-dev libmemcached-dev \
- libboost-regex-dev libboost-program-options-dev libboost-system-dev \
- libboost-date-time-dev libboost-filesystem-dev \
+ libboost-all-dev libcrypto++-dev \
  libpqxx-dev zlib1g-dev --no-install-recommends
 
 WORKDIR /app
